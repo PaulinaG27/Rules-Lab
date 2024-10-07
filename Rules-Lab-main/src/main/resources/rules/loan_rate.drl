@@ -1,0 +1,115 @@
+import com.udea.reglas.model.Participant;
+global com.udea.reglas.model.Rate rate;
+
+dialect "mvel"
+
+rule "Checking Existing Debt Against Lean amount"
+  when
+     Participant(loanAmount > (2 * existingDebt))
+   then
+        rate.setLoanStatus("Rejected - Too Much Debt");
+        rate.setLoanRate(999);
+    end
+
+rule  "Checking Annual Salary is grater than 50000"
+  when
+     Participant(annualSalary <= 50000)
+   then
+      rate.setLoanStatus("Rejected - Too low salary");
+      rate.setLoanRate(999);
+    end
+
+rule "Checking Credit Score less than 550"
+ when
+     Participant(creditScore< 550 , annualSalary > 50000 , loanAmount < (2 * existingDebt))
+  then
+    rate.setLoanStatus("Rejected");
+    rate.setLoanRate(999);
+  end
+
+rule "Checking Credit Score less than 650"
+ when
+   Participant(creditScore< 650  && creditScore >=550 , annualSalary > 50000 , loanAmount < (2 * existingDebt))
+  then
+    rate.setLoanStatus("Approved");
+    rate.setLoanRate(7.25);
+  end
+
+rule "Checking Credit Score less than 750"
+ when
+      Participant(creditScore< 750  && creditScore >=650 , annualSalary > 50000 , loanAmount < (2 * existingDebt))
+    then
+       rate.setLoanStatus("Approved");
+       rate.setLoanRate(6.25);
+    end
+
+rule "Checking Credit Score greater than 750"
+ when
+         Participant(creditScore >= 750 , annualSalary > 50000 , loanAmount < (2 * existingDebt))
+    then
+          rate.setLoanStatus("Approved");
+          rate.setLoanRate(5.25);
+    end
+
+rule  "Checking Age for Credit Apply"
+  when
+     Participant(age < 18 || age > 65)
+   then
+      rate.setLoanStatus("Rejected - Invalid age by policies");
+      rate.setLoanRate(999);
+    end
+
+rule  "Checking if Participant have job"
+  when
+     Participant(!haveJob)
+   then
+      rate.setLoanStatus("Rejected - Participant doesn't have job");
+      rate.setLoanRate(999);
+    end
+
+
+rule  "Checking if Participant have judicial backgorund"
+  when
+     Participant(haveJudicialBackground)
+   then
+      rate.setLoanStatus("Rejected - Participant is a criminal");
+      rate.setLoanRate(999);
+    end
+
+rule  "Checking if Participant dependants"
+  when
+     Participant(quantityDependants > 3)
+   then
+      rate.setLoanStatus("Rejected - Participant have many dependants");
+      rate.setLoanRate(999);
+    end
+
+//Aprueba un préstamo si el cliente tiene un puntaje de crédito superior a 700
+//y si su salario anual es más del doble de la cantidad solicitada del préstamo.
+rule "Check Loan Eligibility"
+  when
+     Participant(creditScore > 700, annualSalary > loanAmount * 2)
+   then
+      rate.setLoanStatus("Approved");
+      rate.setLoanRate(3.5);
+   end
+
+//Ofrece una cuenta de ahorros con intereses altos y sin comisiones si el cliente tiene
+//un salario alto y poca deuda existente
+rule "Recommend Preferred Savings Account"
+  when
+     Participant(annualSalary > 80000, existingDebt < 20000)
+   then
+      rate.setProductRecommendation("Preferred Savings Account");
+      rate.setBenefits("Higher Interest Rates, No Fees");
+   end
+
+//Recomendará una linea de credito al cliente con una tasa de interes de 5.5% si tiene una
+//deuda existente menor a 10000 y un salario anual mayor a 50000
+rule "Offer Line of Credit"
+  when
+     Participant(existingDebt < 10000, annualSalary > 50000 && annualSalary < 80000)
+   then
+      rate.setProductRecommendation("Line of Credit");
+      rate.setLoanRate(5.5);
+   end
