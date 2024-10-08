@@ -12,5 +12,5 @@ public class Rate {
     private String loanStatus;
     private double loanRate;
     private String productRecommendation;
-    private String benefits;
+    private String benefit;
 }

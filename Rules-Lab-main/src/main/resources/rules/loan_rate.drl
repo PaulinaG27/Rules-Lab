@@ -95,17 +95,17 @@ rule "Check Loan Eligibility"
    end
 
 //Ofrece una cuenta de ahorros con intereses altos y sin comisiones si el cliente tiene
-//un salario alto y poca deuda existente
+//un salario alto y poca deuda existente.
 rule "Recommend Preferred Savings Account"
   when
      Participant(annualSalary > 80000, existingDebt < 20000)
    then
       rate.setProductRecommendation("Preferred Savings Account");
-      rate.setBenefits("Higher Interest Rates, No Fees");
+      rate.setBenefit("Higher Interest Rates, No Fees");
    end
 
 //Recomendará una linea de credito al cliente con una tasa de interes de 5.5% si tiene una
-//deuda existente menor a 10000 y un salario anual mayor a 50000
+//deuda existente menor a 10000 y un salario anual mayor a 50000.
 rule "Offer Line of Credit"
   when
      Participant(existingDebt < 10000, annualSalary > 50000 && annualSalary < 80000)
