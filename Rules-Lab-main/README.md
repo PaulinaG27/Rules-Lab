@@ -11,5 +11,6 @@ Para probar en Postman
     "loanAmount": "400",
     "haveJob": true,
     "haveJudicialBackground": false,
-    "quantityDependants": 4
+    "quantityDependants": 4,
+    "yearsInCurrentJob": 3
 }

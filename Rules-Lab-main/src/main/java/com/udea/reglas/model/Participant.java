@@ -18,6 +18,6 @@ public class Participant {
     private boolean haveJob;
     private boolean haveJudicialBackground;
     private int quantityDependants;
-
+    private int yearsInCurrentJob; // Mayor estabilidad laboral es premiada con tasas más bajas
 
 }
