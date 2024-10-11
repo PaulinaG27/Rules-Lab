@@ -10,7 +10,9 @@
 
 :money_with_wings: En este caso la aplicación fue sobre las reglas de negocio de un banco para otorgar créditos.
 
-**Desarrollo:** Se siguieron los pasos de la [guía de laboratorio]([https://docs.google.com/document/d/1d10WJ7EWBvuSx1z00uwjQsLc72wKuRwCcG95FxDikXI/edit?usp=sharing]"Guía") y adicional a eso se crearon 10 reglas de negocio nuevas. Para esto es fundamental tener en cuenta los atributos que tiene el modelo "Participant", para algunas reglas se crearon nuevos atributos y para otras se usaron algunos ya existentes.
+**Guía de laboratorio:** https://docs.google.com/document/d/1d10WJ7EWBvuSx1z00uwjQsLc72wKuRwCcG95FxDikXI/edit?usp=sharing
+
+**Desarrollo:** Se siguieron los pasos de la guía de laboratorio y adicional a eso se crearon 10 reglas de negocio nuevas. Para esto es fundamental tener en cuenta los atributos que tiene el modelo "Participant", para algunas reglas se crearon nuevos atributos y para otras se usaron algunos ya existentes.
 
 Entre los nuevos atributos creados están:
 
