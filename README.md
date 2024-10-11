@@ -1,6 +1,6 @@
 # Laboratorio Drools 
 
-## Laboratorio Nro.2 de Fundamentos de Sistemas de Información sobre reglas de negocio usando Springboot y Drools
+# Laboratorio #2 de Fundamentos de Sistemas de Información sobre reglas de negocio usando Springboot y Drools
 
 :busts_in_silhouette: Juan Sebastián Naranjo Jiménez, Paulina García Aristizábal, Juan Pablo Castro Hoyos
 
